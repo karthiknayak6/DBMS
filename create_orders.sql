@@ -1,31 +1,31 @@
 
 create table salesman
 (
-salesman_id varchar(5),
-name varchar(15),
-city varchar(15),
-commission int,
+salesman_id varchar(5) NOT NULL,
+name varchar(15) NOT NULL,
+city varchar(15) NOT NULL,
+commission int NOT NULL,
 primary key(salesman_id)
 );
 
 create table customer
 (
-customer_id varchar(5),
-cust_name varchar(15),
-city varchar(15),
-grade int,
-salesman_id varchar(5),
+customer_id varchar(5) NOT NULL,
+cust_name varchar(15) NOT NULL,
+city varchar(15) NOT NULL,
+grade int NOT NULL,
+salesman_id varchar(5) NOT NULL,
 primary key(customer_id),
 foreign key(salesman_id) references salesman(salesman_id) on delete cascade
 );
 
 create table orders
 (
-ord_no varchar(5),
-purchase_amt int,
-ord_date date,
-customer_id varchar(5),
-salesman_id varchar(5),
+ord_no varchar(5) NOT NULL,
+purchase_amt int NOT NULL,
+ord_date date NOT NULL,
+customer_id varchar(5) NOT NULL,
+salesman_id varchar(5) NOT NULL,
 primary key(ord_no),
 foreign key(customer_id) references customer(customer_id) on delete cascade,
 foreign key(salesman_id) references salesman(salesman_id) on delete cascade
