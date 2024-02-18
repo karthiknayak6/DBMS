@@ -1,0 +1,60 @@
+create table department
+(
+dno varchar(5),
+dname varchar(15),
+mgrssn varchar(5),
+mgrstartdate date,
+primary key(dno)
+);
+
+create table employee
+(
+ssn varchar(5),
+name varchar(15),
+address varchar(15),
+sex varchar(6),
+salary int,
+superssn varchar(5),
+dno varchar(5),
+primary key(ssn)
+);
+
+alter table employee add constraint fk1 foreign key(dno) references department(dno) on delete
+cascade;
+
+alter table employee add constraint fk2 foreign key(superssn) references employee(ssn) on delete
+cascade;
+
+alter table department add constraint fk3 foreign key(mgrssn) references employee(ssn) on delete
+cascade;
+
+
+create table dlocation
+(
+dno varchar(5),
+dloc varchar(15),
+primary key (dno,dloc),
+foreign key(dno) references department(dno) on delete cascade
+);
+
+
+create table project
+(
+pno varchar(5),
+pname varchar(10),
+plocation varchar(10),
+dno varchar(5),
+primary key(pno),
+foreign key(dno) references department(dno) on delete cascade
+);
+
+
+create table works_on
+(
+ssn varchar(5),
+pno varchar(5),
+hours int,
+primary key(ssn,pno),
+foreign key(ssn) references employee(ssn) on delete cascade,
+foreign key(pno) references project(pno) on delete cascade
+);
