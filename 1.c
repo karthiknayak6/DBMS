@@ -115,4 +115,5 @@ void setPixel(GLint xcor, GLint ycor)
     glBegin(GL_POINTS);
     glVertex2i(xcor, ycor);
     glEnd();
+    glFlush();
 }
